@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleCoffee = (e) => {
@@ -10,7 +11,7 @@ const AddCoffee = () => {
     const coffeeData = {
       name: form.name.value,
       chef: form.chef.value,
-      supplier: form.supplier.value,
+      price: form.price.value,
       taste: form.taste.value,
       category: form.category.value,
       details: form.details.value,
@@ -19,10 +20,25 @@ const AddCoffee = () => {
 
     console.log(coffeeData);
 
-    fetch("http://localhost:3000/coffees")
+    //send coffee data to tha dataBase
+
+    fetch("http://localhost:3000/coffee", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(coffeeData),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Coffee Added Successful!",
+            icon: "success",
+            draggable: true,
+            timer: 1500,
+          });
+        }
       });
   };
 
@@ -48,7 +64,7 @@ const AddCoffee = () => {
 
         {/* form section */}
         <form onSubmit={handleCoffee}>
-          <div className="grid grid-cols-2 gap-5 pt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-10">
             <fieldset className="fieldset">
               <label className="font-bold">Name</label>
               <input
@@ -70,12 +86,12 @@ const AddCoffee = () => {
             </fieldset>
 
             <fieldset className="fieldset">
-              <label className="font-bold">Supplier</label>
+              <label className="font-bold">Price</label>
               <input
                 type="text"
-                name="supplier"
+                name="price"
                 className="input w-full"
-                placeholder="Cappu Authorizer"
+                placeholder="Enter price (e.g. 250)"
               />
             </fieldset>
 
