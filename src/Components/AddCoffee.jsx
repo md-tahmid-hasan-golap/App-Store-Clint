@@ -139,7 +139,7 @@ const AddCoffee = () => {
           <input
             type="submit"
             className="btn w-full bg-[#D2B48C] mt-5"
-            value="Update Coffee Details"
+            value="Add Coffee "
           />
         </form>
       </div>

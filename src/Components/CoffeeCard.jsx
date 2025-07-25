@@ -4,7 +4,7 @@ import { MdDeleteOutline, MdEdit, MdEditAttributes } from "react-icons/md";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, chef, price, photo } = coffee;
   const handleDelete = (_id) => {
     console.log("delete", _id);
@@ -32,6 +32,8 @@ const CoffeeCard = ({ coffee }) => {
                 text: "Your Coffee  has been deleted.",
                 icon: "success",
               });
+              const remaningCoffee = coffees.filter((cof) => cof._id !== _id);
+              setCoffees(remaningCoffee);
             }
           });
       }
@@ -63,9 +65,12 @@ const CoffeeCard = ({ coffee }) => {
                   <GrFormView size={25} />
                 </button>
               </Link>
-              <button className="btn join-item text-white bg-black rounded-md">
-                <MdEdit size={25} />
-              </button>
+              <Link to={`/updateCoffee/${_id}`}>
+                {" "}
+                <button className="btn join-item text-white bg-black rounded-md">
+                  <MdEdit size={25} />
+                </button>
+              </Link>
               <button
                 onClick={() => handleDelete(_id)}
                 className="btn join-item text-white bg-red-500 rounded-md"
