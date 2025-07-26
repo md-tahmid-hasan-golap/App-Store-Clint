@@ -9,10 +9,12 @@ import Home from "./Components/Home.jsx";
 import AddCoffee from "./Components/AddCoffee.jsx";
 import UpdateCoffee from "./Components/UpdateCoffee.jsx";
 import CoffeeDetails from "./Components/CoffeeDetails.jsx";
+import ErrorPage from "./Components/ErrorPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayouts,
+    errorElement: <ErrorPage></ErrorPage>,
 
     children: [
       {

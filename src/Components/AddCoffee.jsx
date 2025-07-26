@@ -53,7 +53,7 @@ const AddCoffee = () => {
       <div className="bg-[#F4F3F0] p-16 rounded-md mt-12">
         {/* text section */}
         <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <h2 className="text-4xl">Update Existing Coffee Details</h2>
+          <h2 className="text-4xl">Add New Coffee</h2>
           <p>
             It is a long established fact that a reader will be distraceted by
             the readable content of a page when looking at its layout. The point
