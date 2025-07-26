@@ -10,6 +10,9 @@ import AddCoffee from "./Components/AddCoffee.jsx";
 import UpdateCoffee from "./Components/UpdateCoffee.jsx";
 import CoffeeDetails from "./Components/CoffeeDetails.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
+import Login from "./Components/Login.jsx";
+import Register from "./Components/Register.jsx";
+import FirebaseAuthProvider from "./Context/FirebaseAuthProvider.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,12 +41,22 @@ const router = createBrowserRouter([
           fetch(`http://localhost:3000/coffee/${params.id}`),
         Component: CoffeeDetails,
       },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <FirebaseAuthProvider>
+      <RouterProvider router={router} />
+    </FirebaseAuthProvider>
   </StrictMode>
 );
