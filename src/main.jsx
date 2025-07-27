@@ -10,6 +10,7 @@ import CoffeeDetails from "./Components/CoffeeDetails.jsx";
 import UpdateCoffee from "./Components/UpdateCoffee.jsx";
 import Login from "./Components/Login.jsx";
 import Registation from "./Components/Registation.jsx";
+import FirebaseAuthProvider from "./firebase/FirebaseAuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <FirebaseAuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </FirebaseAuthProvider>
   </StrictMode>
 );

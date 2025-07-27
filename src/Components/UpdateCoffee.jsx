@@ -45,7 +45,7 @@ const UpdateCoffee = () => {
       });
   };
   return (
-    <div className="mt-10">
+    <div className="mt-10 mb-10">
       <Link to="/">
         <p className="font-bold flex items-center gap-2 hover:text-orange-600">
           <FaArrowLeftLong /> Back to home

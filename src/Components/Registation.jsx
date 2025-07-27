@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const Registration = () => {
+  const { creatUser, googleLogin } = useContext(AuthContext);
+  const goggleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,8 +24,13 @@ const Registration = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-
     console.log({ name, address, phone, photoURL, email, password });
+    creatUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -88,6 +104,7 @@ const Registration = () => {
           </button>
         </form>
         <button
+          onClick={goggleLogin}
           className="btn btn-outline btn-neutral mt-4 w-full flex items-center justify-center gap-2"
           type="button"
         >

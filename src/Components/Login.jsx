@@ -1,19 +1,34 @@
-import React from "react";
 import { Link } from "react-router";
 import { FcGoogle } from "react-icons/fc"; // Google icon import
+import { useContext } from "react";
+import { AuthContext } from "../firebase/FirebaseAuthProvider";
 
 const Login = () => {
+  const { signInUser, googleLogin } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleGoogleSignIn = () => {
-    // এখানে Google sign-in এর লজিক দিবে
-    console.log("Google Sign-In clicked");
+    googleLogin()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
