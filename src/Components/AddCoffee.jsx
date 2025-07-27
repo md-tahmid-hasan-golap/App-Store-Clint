@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleADdCoffee = (e) => {
@@ -25,7 +26,24 @@ const AddCoffee = () => {
       photo,
     };
 
-    console.log(allData);
+    fetch("http://localhost:3000/coffees", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Coffee Added!",
+            icon: "success",
+            draggable: true,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (
@@ -39,10 +57,10 @@ const AddCoffee = () => {
       </Link>
 
       <div className="bg-[#F4F3F0] p-14 rounded-md mt-10">
-        <div className="text-center w-[800px] mx-auto space-y-4">
-          <h2 className="text-2xl font-semibold">Add New Coffee</h2>
-          <p>
-            It is a long established fact that a reader will be distraceted by
+        <div className="text-center max-w-[800px] w-full px-4 md:px-8 mx-auto space-y-4">
+          <h2 className="text-2xl md:text-3xl font-semibold">Add New Coffee</h2>
+          <p className="text-sm md:text-base text-gray-600">
+            It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
             distribution of letters, as opposed to using Content here.
