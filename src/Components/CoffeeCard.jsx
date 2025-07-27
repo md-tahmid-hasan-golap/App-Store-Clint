@@ -63,9 +63,12 @@ const CoffeeCard = ({ coffee }) => {
           >
             <GrFormView size={25} />
           </Link>
-          <button className="bg-black hover:bg-black text-white px-4 py-1 rounded-md transition">
+          <Link
+            to={`/updateCoffee/${_id}`}
+            className="bg-black hover:bg-black text-white px-4 py-1 rounded-md transition"
+          >
             <MdEdit size={25} />
-          </button>
+          </Link>
           <button
             onClick={() => handleDelete(_id)}
             className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md transition"
