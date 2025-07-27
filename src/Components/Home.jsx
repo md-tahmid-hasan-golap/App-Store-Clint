@@ -2,19 +2,33 @@ import React from "react";
 import { BsCupFill } from "react-icons/bs";
 import { Link, useLoaderData } from "react-router";
 import CoffeeCard from "./CoffeeCard";
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const coffeesData = useLoaderData();
   console.log(coffeesData);
   return (
     <div className="py-10">
-      <div className="text-center space-y-2">
-        <p>--- Sip & Savor ---</p>
-        <h2 className="text-[#331A15] text-2xl">Our Popular Products</h2>
-        <Link to="/addCoffee" className="inline-block">
-          {" "}
-          <button className="bg-[#E3B577] rounded-md py-1 px-2 text-white mt-3 flex items-center gap-1">
-            Add Coffee <BsCupFill className="text-black" />
+      <div className="text-center space-y-3">
+        <p className="text-sm text-[#B58130] font-semibold tracking-wide uppercase">
+          --- Sip & Savor ---
+        </p>
+        <Marquee
+          className="text-3xl font-bold text-[#331A15]"
+          speed={80}
+          pauseOnHover={true}
+          gradient={false}
+          style={{ width: "600px", margin: "0 auto" }} // centered fixed width marquee
+        >
+          <p className="mx-8 whitespace-nowrap">Our Popular Products</p>
+          <p className="mx-8 whitespace-nowrap">Our Popular Products</p>
+          <p className="mx-8 whitespace-nowrap">Our Popular Products</p>
+          <p className="mx-8 whitespace-nowrap">Our Popular Products</p>
+        </Marquee>
+
+        <Link to="/addCoffee" className="inline-block mt-2">
+          <button className="bg-[#E3B577] hover:bg-[#d1a55a] transition duration-300 rounded-md py-2 px-4 text-white font-medium flex items-center justify-center gap-2">
+            Add Coffee <BsCupFill className="text-black text-lg" />
           </button>
         </Link>
       </div>
