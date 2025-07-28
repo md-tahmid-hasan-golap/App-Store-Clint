@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsCupFill } from "react-icons/bs";
 import { Link, useLoaderData } from "react-router";
 import CoffeeCard from "./CoffeeCard";
 import Marquee from "react-fast-marquee";
 
 const Home = () => {
-  const coffeesData = useLoaderData();
-  console.log(coffeesData);
+  const initialCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(initialCoffees);
+  console.log(coffees);
   return (
     <div className="py-10">
       <div className="text-center space-y-3">
@@ -34,8 +35,13 @@ const Home = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-        {coffeesData.map((coffee) => (
-          <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>
+        {coffees.map((coffee) => (
+          <CoffeeCard
+            key={coffee._id}
+            coffee={coffee}
+            coffees={coffees}
+            setCoffees={setCoffees}
+          ></CoffeeCard>
         ))}
       </div>
     </div>

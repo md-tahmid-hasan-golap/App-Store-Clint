@@ -11,11 +11,13 @@ import UpdateCoffee from "./Components/UpdateCoffee.jsx";
 import Login from "./Components/Login.jsx";
 import Registation from "./Components/Registation.jsx";
 import FirebaseAuthProvider from "./firebase/FirebaseAuthProvider.jsx";
+import ErrorPage from "./Components/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayouts,
+    errorElement: <ErrorPage></ErrorPage>,
 
     children: [
       {
